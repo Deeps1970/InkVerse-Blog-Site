@@ -92,7 +92,7 @@
           class="hidden md:flex items-center gap-6 font-semibold text-sm lg:text-base"
         >
           <a href="#hero" class="hover:text-tealink transition-colors">Home</a>
-          <a href="blog.html" class="hover:text-tealink transition-colors"
+          <a href="./blog.html" class="hover:text-tealink transition-colors"
             >Blogs</a
           >
           <a href="#contact" class="hover:text-tealink transition-colors"
@@ -158,11 +158,11 @@
               <p
                 class="text-gray-400 mb-5 text-sm sm:text-base max-w-md mx-auto"
               >
-                Where words meet creativity and confidence.
+                Click the Poster 👇🏻 to Register for the Upcoming Events!!
               </p>
 
               <div
-                class="relative w-full max-w-md mx-auto overflow-hidden rounded-xl border border-tealink group bg-black"
+                class="relative w-full max-w-[14rem] mx-auto overflow-hidden rounded-xl border border-tealink group bg-black"
               >
                 <div class="w-full h-56 sm:h-64 md:h-72">
                   <div
@@ -265,7 +265,7 @@
               </div>
 
               <a
-                href="#slide1"
+                href="#slide2"
                 class="inline-block mt-4 text-2xl animate-bounce text-tealink"
               >
                 ⬇
@@ -330,7 +330,7 @@
 
               <!-- Center: Carousel (reduced width) -->
               <div
-                class="relative w-full max-w-lg overflow-hidden rounded-xl border border-tealink group bg-black"
+                class="relative w-full max-w-[14rem] overflow-hidden rounded-xl border border-tealink group bg-black"
               >
                 <div class="w-full h-64 xl:h-70">
                   <div
@@ -1840,36 +1840,6 @@
       if (totalSlidesDesktop > 1) {
         setInterval(nextSlideDesktop, 4000);
       }
-
-      // HARD SCROLL LOCK (wheel based)
-      const scroller = document.getElementById("scroller");
-      const sections = scroller
-        ? [...scroller.querySelectorAll("section")]
-        : [];
-      let scrollCurrent = 0;
-      let scrollLocked = false;
-
-      if (scroller && sections.length) {
-        scroller.addEventListener(
-          "wheel",
-          (e) => {
-            e.preventDefault();
-            if (scrollLocked) return;
-            scrollLocked = true;
-
-            if (e.deltaY > 0 && scrollCurrent < sections.length - 1) {
-              scrollCurrent++;
-            } else if (e.deltaY < 0 && scrollCurrent > 0) {
-              scrollCurrent--;
-            }
-
-            sections[scrollCurrent].scrollIntoView({ behavior: "smooth" });
-            setTimeout(() => (scrollLocked = false), 800);
-          },
-          { passive: false },
-        );
-      }
     </script>
   </body>
 </html>
-
