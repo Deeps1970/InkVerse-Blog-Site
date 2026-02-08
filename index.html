@@ -1,0 +1,1998 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>INKVERSE Club</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- THEME CONFIG -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: "#0B0F10",
+              tealink: "#008C99",
+              inkcard: "#0F1416",
+            },
+            maxWidth: {
+              content: "1120px",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      :root {
+        --nav-h: 72px;
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      /* keep scrolling enabled */
+      body {
+        background-color: #0B0F10; /* ink */
+      }
+
+      /* let scroller fill remaining space and start below navbar */
+      #scroller {
+        min-height: calc(100vh - var(--nav-h));
+        overflow-y: auto;
+        scroll-behavior: smooth;
+        padding-top: var(--nav-h);
+      }
+
+      /* center the hero content nicely on desktop */
+      #hero {
+        padding-top: 2rem;    /* extra breathing room */
+        padding-bottom: 4rem;
+      }
+
+      @media (min-width: 1024px) {
+        #hero {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding-top: 6rem;    /* extra breathing room */
+          padding-bottom: 4rem;
+        }
+      }
+
+    </style>
+  </head>
+
+  <body class="bg-ink text-white">
+    <!-- ================= NAVBAR ================= -->
+    <nav
+      class="fixed top-0 left-0 w-full bg-black/80 backdrop-blur border-b border-tealink z-50"
+      style="height: var(--nav-h)"
+    >
+      <div
+        class="max-w-content mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-3">
+          <button
+            id="menuBtn"
+            class="md:hidden text-2xl text-tealink focus:outline-none"
+            aria-label="Toggle navigation"
+          >
+            ☰
+          </button>
+          <h1 class="text-xl sm:text-2xl font-bold tracking-wide text-tealink">
+            INKVERSE
+          </h1>
+        </div>
+
+        <div
+          class="hidden md:flex items-center gap-6 font-semibold text-sm lg:text-base"
+        >
+          <a href="#hero" class="hover:text-tealink transition-colors">Home</a>
+          <a href="./events.html" class="hover:text-tealink transition-colors">
+            Register Events
+          </a>
+          <a href="./blog.html" class="hover:text-tealink transition-colors"
+            >Blogs</a
+          >
+          <a href="#contact" class="hover:text-tealink transition-colors"
+            >Contact</a
+          >
+        </div>
+      </div>
+
+      <!-- Mobile dropdown -->
+      <div
+        id="mobileMenu"
+        class="hidden md:hidden bg-black border-t border-tealink"
+      >
+        <a
+          href="#hero"
+          class="block px-4 py-3 border-b border-tealink/30 hover:bg-ink/70"
+          >Home</a
+        >
+        <a href="./events.html" class="block px-4 py-3 border-b border-tealink/30 hover:bg-ink/70">
+          Register Events
+        </a>
+
+        <a
+          href="blog.html"
+          class="block px-4 py-3 border-b border-tealink/30 hover:bg-ink/70"
+          >Blogs</a
+        >
+        <a href="#contact" class="block px-4 py-3 hover:bg-ink/70">Contact</a>
+      </div>
+    </nav>
+
+    <div id="scroller">
+      <!-- ================= HERO ================= -->
+      <section id="hero" class="bg-ink py-10 sm:py-12 lg:py-16">
+        <div class="max-w-content w-full px-4 sm:px-6 lg:px-8">
+          <!-- Mobile/Tablet: stacked layout -->
+          <div class="lg:hidden grid gap-10 md:grid-cols-3 items-start">
+            <!-- Left: Faculty -->
+            <div class="text-center md:text-left space-y-4 mt-10 sm:mt-14 pt-4">
+              <div
+                class="w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 mx-auto md:mx-0 rounded-full overflow-hidden border-2 border-tealink"
+              >
+                <img
+                  src="contents/images/subhashini mam.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Faculty Coordinator"
+                />
+              </div>
+              <div>
+                <h3
+                  class="mt-2 sm:mt-3 font-bold text-tealink text-sm sm:text-base"
+                >
+                  Faculty Coordinator
+                </h3>
+                <h3 class="text-base sm:text-lg">Dr. B. Subhashini</h3>
+              </div>
+            </div>
+
+            <!-- Center: Hero + Carousel -->
+            <div class="text-center">
+              <h2
+                class="text-3xl sm:text-4xl font-bold text-tealink mb-4 leading-tight"
+              >
+                Welcome to<br class="hidden sm:inline" />
+                INKVERSE CLUB
+              </h2>
+
+              <p class="text-tealink font-semibold text-xs sm:text-sm tracking-[0.2em] uppercase mb-1">
+                Upcoming Events
+              </p>
+              <p
+                class="text-gray-400 mb-5 text-sm sm:text-base max-w-md mx-auto"
+              >
+                Swipe through the event posters and tap any card to view full details and register.
+              </p>
+
+              <div
+                class="relative w-full max-w-[14rem] mx-auto overflow-hidden rounded-xl border border-tealink group bg-black"
+              >
+                <div class="w-full h-56 sm:h-64 md:h-72">
+                  <div
+                    id="carouselContainer"
+                    class="flex h-full transition-transform duration-500 ease-in-out"
+                    style="transform: translateX(0%)"
+                  >
+                    <!-- Poster 1: FIFA -->
+                    <a
+                      href="https://forms.gle/vYK6dDXchjJpMrkSA"
+                      class="flex-shrink-0 w-full h-full relative bg-black"
+                    >
+                      <img
+                        src="./contents/posters/fifa.png"
+                        class="w-full h-full object-contain opacity-90"
+                        alt="FIFA Tournament Poster"
+                      />
+
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+
+                      <div class="absolute inset-x-3 bottom-3 space-y-1 text-left">
+                        <p class="text-xs tracking-wide uppercase text-teal-300">
+                          Upcoming Event
+                        </p>
+                        <h3 class="text-lg font-semibold text-white leading-tight">
+                          FIFA 24 Esports
+                        </h3>
+                        <p class="text-xs text-gray-200">
+                          13 Feb 2026 • 11:00 AM • C-Block
+                        </p>
+                        <p class="text-[11px] text-gray-300">
+                          2‑member teams • Knockout • Golden Rule (5 Goals)
+                        </p>
+                      </div>
+                    </a>
+
+                    <!-- Poster 2: MIRROR-SPELL -->
+                    <a
+                      href="https://forms.gle/8Tw3gvkYXxjhwhsa8"
+                      class="flex-shrink-0 w-full h-full relative bg-black"
+                    >
+                      <img
+                        src="./contents/posters/mirrorspell.png"
+                        class="w-full h-full object-contain opacity-90"
+                        alt="Mirror-Spell Poster"
+                      />
+
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+
+                      <div class="absolute inset-x-3 bottom-3 space-y-1 text-left">
+                        <p class="text-xs tracking-wide uppercase text-teal-300">
+                          Upcoming Event
+                        </p>
+                        <h3 class="text-lg font-semibold text-white leading-tight">
+                          Mirror Spell
+                        </h3>
+                        <p class="text-xs text-gray-200">
+                          13 Feb 2026 • 11:00 AM • C-Block
+                        </p>
+                        <p class="text-[11px] text-gray-300">
+                          Fun word games • Solo participation • Duo participation
+                        </p>
+                      </div>
+                    </a>
+
+                    <!-- Poster 3: WIT-WARZ -->
+                    <a
+                      href="https://forms.gle/uGsCdVJTMg3Edcms8"
+                      class="flex-shrink-0 w-full h-full relative bg-black"
+                    >
+                      <img
+                        src="./contents/posters/witwars.png"
+                        class="w-full h-full object-contain opacity-90"
+                        alt="WIT-WARZ Poster"
+                      />
+
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+
+                      <div class="absolute inset-x-3 bottom-3 space-y-1 text-left">
+                        <p class="text-xs tracking-wide uppercase text-teal-300">
+                          Upcoming Event
+                        </p>
+                        <h3 class="text-lg font-semibold text-white leading-tight">
+                          WitWarZ Debate Battle
+                        </h3>
+                        <p class="text-xs text-gray-200">
+                          13 Feb 2026 • 11:00 AM • C-Block, Auditorium
+                        </p>
+                        <p class="text-[11px] text-gray-300">
+                          2‑member teams • On‑spot topics • Judges panel
+                        </p>
+                      </div>
+                    </a>
+
+                    <!-- Poster 4: FREE FIRE -->
+                    <a
+                      href="https://forms.gle/7cK4qBFYFFoRVcFYA"
+                      class="flex-shrink-0 w-full h-full relative bg-black"
+                    >
+                      <img
+                        src="./contents/posters/free fire.png"
+                        class="w-full h-full object-contain opacity-90"
+                        alt="Free Fire Poster"
+                      />
+
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+
+                      <div class="absolute inset-x-3 bottom-3 space-y-1 text-left">
+                        <p class="text-xs tracking-wide uppercase text-teal-300">
+                          Upcoming Event
+                        </p>
+                        <h3 class="text-lg font-semibold text-white leading-tight">
+                          Free Fire Squad Battle
+                        </h3>
+                        <p class="text-xs text-gray-200">
+                          13 Feb 2026 • 11:00 AM • C-Block
+                        </p>
+                        <p class="text-[11px] text-gray-300">
+                          4‑member squads • Custom rooms • BR & CS
+                        </p>
+                      </div>
+                    </a>
+
+                    <!-- Poster 5: MURDER MYSTERY -->
+                    <a
+                      href="https://forms.gle/DDZK6JXNhoYMkNcw6"
+                      class="flex-shrink-0 w-full h-full relative bg-black"
+                    >
+                      <img
+                        src="./contents/posters/murder mystery.png"
+                        class="w-full h-full object-contain opacity-90"
+                        alt="Murder Mystery Poster"
+                      />
+
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+
+                      <div class="absolute inset-x-3 bottom-3 space-y-1 text-left">
+                        <p class="text-xs tracking-wide uppercase text-teal-300">
+                          Upcoming Event
+                        </p>
+                        <h3 class="text-lg font-semibold text-white leading-tight">
+                          Murder Mystery
+                        </h3>
+                        <p class="text-xs text-gray-200">
+                          13 Feb 2026 • 11:00 AM • C-Block
+                        </p>
+                        <p class="text-[11px] text-gray-300">
+                          Team investigation • Clues • Story‑driven experience
+                        </p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Controls -->
+                <button
+                  id="prevBtn"
+                  class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-tealink text-white px-3 py-2 rounded-full transition z-10 opacity-0 group-hover:opacity-100 text-sm sm:text-base"
+                >
+                  &#8249;
+                </button>
+
+                <button
+                  id="nextBtn"
+                  class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-tealink text-white px-3 py-2 rounded-full transition z-10 opacity-0 group-hover:opacity-100 text-sm sm:text-base"
+                >
+                  &#8250;
+                </button>
+
+                <!-- Dots -->
+                <div
+                  id="dots"
+                  class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2 z-10"
+                ></div>
+              </div>
+            </div>
+
+
+            <!-- Right: Event coordinator -->
+            <div class="text-center md:text-right space-y-4 mt-2 md:mt-4">
+              <div
+                class="w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 mx-auto md:ml-auto rounded-full border-2 border-tealink overflow-hidden bg-ink/60 flex items-center justify-center text-xs text-gray-400"
+              >
+                <img
+                  src="contents/images/suhail.png"
+                  alt="Mr. A. Suhail Habeeb"
+                />
+              </div>
+              <h3 class="mt-1 font-bold text-tealink text-sm sm:text-base">
+                Event coordinator
+              </h3>
+              <h3 class="text-base sm:text-lg">Mr. A. Suhail Habeeb</h3>
+            </div>
+          </div>
+
+          <!-- Desktop/Laptop: custom layout -->
+          <div
+            class="hidden lg:flex flex-col items-center justify-center gap-8"
+          >
+            <!-- Top: Welcome text -->
+            <div class="text-center">
+              <h2
+                class="text-3xl xl:text-4xl font-bold text-tealink mb-2 leading-tight"
+              >
+                Welcome to INKVERSE CLUB
+              </h2>
+              <p class="text-gray-400 text-sm">
+                Where words meet creativity and confidence.
+              </p>
+              <p class="text-tealink text-xs tracking-[0.2em] uppercase mt-3">
+                Upcoming Events
+              </p>
+              <p class="text-gray-400 text-xs sm:text-sm">
+                Browse this semester’s highlights and tap any poster for full details.
+              </p>
+            </div>
+
+            <!-- Middle Row: Faculty (left) + Carousel (center) + Event Coordinator (right) -->
+            <div
+              class="flex items-center justify-center w-full max-w-6xl gap-6 xl:gap-8"
+            >
+              <!-- Left: Faculty -->
+              <div class="flex flex-col items-center gap-2 text-center">
+                <div
+                  class="w-20 h-20 xl:w-24 xl:h-24 rounded-full overflow-hidden border-2 border-tealink flex-shrink-0"
+                >
+                  <img
+                    src="contents/images/subhashini mam.jpeg"
+                    class="w-full h-full object-cover"
+                    alt="Faculty Coordinator"
+                  />
+                </div>
+                <div>
+                  <h3 class="font-bold text-tealink text-xs xl:text-sm">
+                    Faculty Coordinator
+                  </h3>
+                  <h3 class="text-sm xl:text-base">Dr. B. Subhashini</h3>
+                </div>
+              </div>
+
+              <!-- Center: Carousel -->
+              <div
+                class="relative w-full max-w-[14rem] overflow-hidden rounded-xl border border-tealink group bg-black"
+              >
+                <div class="w-full h-64 xl:h-70">
+                  <div
+                    id="carouselContainerDesktop"
+                    class="flex h-full transition-transform duration-500 ease-in-out"
+                    style="transform: translateX(0%)"
+                  >
+                    <!-- Poster 1: FIFA -->
+                    <a
+                      href="https://forms.gle/Dvd8UfzKXApN18J49"
+                      class="flex-shrink-0 w-full h-full relative bg-black"
+                    >
+                      <img
+                        src="./contents/posters/fifa.png"
+                        class="w-full h-full object-contain opacity-90"
+                        alt="FIFA Tournament Poster"
+                      />
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                      <div class="absolute inset-x-3 bottom-3 space-y-1 text-left">
+                        <p class="text-xs tracking-wide uppercase text-teal-300">
+                          Upcoming Event
+                        </p>
+                        <h3 class="text-lg font-semibold text-white leading-tight">
+                          FIFA 24 Esports
+                        </h3>
+                        <p class="text-xs text-gray-200">
+                          13 Feb 2026 • 11:00 AM • C-Block
+                        </p>
+                        <p class="text-[11px] text-gray-300">
+                          2‑member teams • Knockout • Golden Rule (5 Goals)
+                        </p>
+                      </div>
+                    </a>
+
+                    <!-- Poster 2: Mirror-Spell -->
+                    <a
+                      href="https://forms.gle/8Tw3gvkYXxjhwhsa8"
+                      class="flex-shrink-0 w-full h-full relative bg-black"
+                    >
+                      <img
+                        src="./contents/posters/mirrorspell.png"
+                        class="w-full h-full object-contain opacity-90"
+                        alt="Mirror-Spell Poster"
+                      />
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                      <div class="absolute inset-x-3 bottom-3 space-y-1 text-left">
+                        <p class="text-xs tracking-wide uppercase text-teal-300">
+                          Upcoming Event
+                        </p>
+                        <h3 class="text-lg font-semibold text-white leading-tight">
+                          Mirror Spell
+                        </h3>
+                        <p class="text-xs text-gray-200">
+                          13 Feb 2026 • 11:00 AM • C-Block
+                        </p>
+                        <p class="text-[11px] text-gray-300">
+                          Fun word games • Solo participation • Duo participation
+                        </p>
+                      </div>
+                    </a>
+
+                    <!-- Poster 3: WIT-WARZ -->
+                    <a
+                      href="https://forms.gle/uGsCdVJTMg3Edcms8"
+                      class="flex-shrink-0 w-full h-full relative bg-black"
+                    >
+                      <img
+                        src="./contents/posters/witwars.png"
+                        class="w-full h-full object-contain opacity-90"
+                        alt="WIT-WARZ Poster"
+                      />
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                      <div class="absolute inset-x-3 bottom-3 space-y-1 text-left">
+                        <p class="text-xs tracking-wide uppercase text-teal-300">
+                          Upcoming Event
+                        </p>
+                        <h3 class="text-lg font-semibold text-white leading-tight">
+                          WitWarZ Debate Battle
+                        </h3>
+                        <p class="text-xs text-gray-200">
+                          13 Feb 2026 • 11:00 AM • C-Block, Auditorium
+                        </p>
+                        <p class="text-[11px] text-gray-300">
+                          2‑member teams • On‑spot topics • Judges panel
+                        </p>
+                      </div>
+                    </a>
+
+                    <!-- Poster 4: Free Fire -->
+                    <a
+                      href="https://forms.gle/7cK4qBFYFFoRVcFYA"
+                      class="flex-shrink-0 w-full h-full relative bg-black"
+                    >
+                      <img
+                        src="./contents/posters/free fire.png"
+                        class="w-full h-full object-contain opacity-90"
+                        alt="Free Fire Poster"
+                      />
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                      <div class="absolute inset-x-3 bottom-3 space-y-1 text-left">
+                        <p class="text-xs tracking-wide uppercase text-teal-300">
+                          Upcoming Event
+                        </p>
+                        <h3 class="text-lg font-semibold text-white leading-tight">
+                          Free Fire War Arena
+                        </h3>
+                        <p class="text-xs text-gray-200">
+                          13 Feb 2026 • 11:00 AM • C-Block
+                        </p>
+                        <p class="text-[11px] text-gray-300">
+                          4‑member squads • Custom rooms • BR & CS Battle
+                        </p>
+                      </div>
+                    </a>
+
+                    <!-- Poster 5: Murder Mystery -->
+                    <a
+                      href="https://forms.gle/DDZK6JXNhoYMkNcw6"
+                      class="flex-shrink-0 w-full h-full relative bg-black"
+                    >
+                      <img
+                        src="./contents/posters/murder mystery.png"
+                        class="w-full h-full object-contain opacity-90"
+                        alt="Murder Mystery Poster"
+                      />
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                      <div class="absolute inset-x-3 bottom-3 space-y-1 text-left">
+                        <p class="text-xs tracking-wide uppercase text-teal-300">
+                          Upcoming Event
+                        </p>
+                        <h3 class="text-lg font-semibold text-white leading-tight">
+                          Murder Mystery
+                        </h3>
+                        <p class="text-xs text-gray-200">
+                          13 Feb 2026 • 11:00 AM • C-Block
+                        </p>
+                        <p class="text-[11px] text-gray-300">
+                          Team investigation • Clues • Story‑driven experience
+                        </p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Controls -->
+                <button
+                  id="prevBtnDesktop"
+                  class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-tealink text-white px-3 py-2 rounded-full transition z-10 opacity-0 group-hover:opacity-100"
+                >
+                  &#8249;
+                </button>
+                <button
+                  id="nextBtnDesktop"
+                  class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-tealink text-white px-3 py-2 rounded-full transition z-10 opacity-0 group-hover:opacity-100"
+                >
+                  &#8250;
+                </button>
+
+                <!-- Dots -->
+                <div
+                  id="dotsDesktop"
+                  class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2 z-10"
+                ></div>
+              </div>
+
+              <!-- Right: Event coordinator -->
+              <div class="flex flex-col items-center gap-2 text-center">
+                <div
+                  class="w-20 h-20 xl:w-24 xl:h-24 rounded-full border border-tealink overflow-hidden bg-ink/60 flex items-center justify-center text-xs text-gray-400 flex-shrink-0"
+                >
+                  <img
+                    src="contents/images/suhail.png"
+                    alt="Mr. A. Suhail Habeeb"
+                  />
+                </div>
+                <div>
+                  <h3 class="font-bold text-tealink text-xs xl:text-sm">
+                    Event coordinator
+                  </h3>
+                  <h3 class="text-sm xl:text-base">Mr. A. Suhail Habeeb</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+      <!-- ================= TEAM SECTIONS (ALTERNATING LAYOUTS) ================= -->
+
+      <!-- Developers Section -->
+      <section class="bg-ink py-10 sm:py-12 lg:py-16">
+        <div
+          class="max-w-content mx-auto w-full px-4 sm:px-6 lg:px-10 flex flex-col justify-center gap-10 sm:gap-14 lg:gap-20"
+        >
+          <h2 class="text-3xl font-bold text-center text-tealink">
+            Developers
+          </h2>
+
+          <!-- Lead Developer - RIGHT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/deepak.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Lead Developer"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  Lead Developer
+                </p>
+                <p class="text-lg sm:text-xl">Deepak.B.T</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Directs the complete development of the website, plans the
+                  technical architecture, manages the development team, and
+                  ensures the site is efficient & secure.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: right aligned -->
+            <div class="hidden lg:flex items-center justify-end gap-4">
+              <div class="text-right max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">Lead Developer</p>
+                <p class="text-lg">Deepak.B.T</p>
+                <p class="text-sm text-gray-400">
+                  Directs the complete development of the website, plans the
+                  technical architecture, manages the development team, and
+                  ensures the site is efficient & secure.
+                </p>
+              </div>
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/deepak.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Lead Developer"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Assistant Developer - LEFT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/vinaya.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Assistant Developer"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  Assistant Developer
+                </p>
+                <p class="text-lg sm:text-xl">Vinaya.V</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Supports the lead developer in building and maintaining the
+                  website, helps with coding and testing, fixes bugs, and
+                  assists in implementing features.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: left aligned -->
+            <div class="hidden lg:flex items-center justify-start gap-4">
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/vinaya.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Assistant Developer"
+                />
+              </div>
+              <div class="text-left max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">
+                  Assistant Developer
+                </p>
+                <p class="text-lg">Vinaya.V</p>
+                <p class="text-sm text-gray-400">
+                  Supports the lead developer in building and maintaining the
+                  website, helps with coding and testing, fixes bugs, and
+                  assists in implementing features.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- President / VP / Secretary -->
+      <section id="slide2" class="bg-black py-10 sm:py-12 lg:py-16">
+        <div
+          class="max-w-content mx-auto w-full px-4 sm:px-6 lg:px-10 flex flex-col justify-center gap-12 lg:gap-16"
+        >
+          <!-- President - RIGHT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/harsha.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="President"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  President
+                </p>
+                <p class="text-lg sm:text-xl">Harshavardhan. G</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Leads and represents the club, manages all activities and
+                  decisions, and coordinates with team members and faculty.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: right aligned -->
+            <div class="hidden lg:flex items-center justify-end gap-4">
+              <div class="text-right max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">President</p>
+                <p class="text-lg">Harshavardhan. G</p>
+                <p class="text-sm text-gray-400">
+                  Leads and represents the club, manages all activities and
+                  decisions, and coordinates with team members and faculty.
+                </p>
+              </div>
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/harsha.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="President"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Vice-President - LEFT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/aman.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Vice President"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  Vice-President
+                </p>
+                <p class="text-lg sm:text-xl">Aman Metangale</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Assists the President in managing club activities and supports
+                  coordination among teams.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: left aligned -->
+            <div class="hidden lg:flex items-center justify-start gap-4">
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/aman.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Vice President"
+                />
+              </div>
+              <div class="text-left max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">Vice-President</p>
+                <p class="text-lg">Aman Metangale</p>
+                <p class="text-sm text-gray-400">
+                  Assists the President in managing club activities and supports
+                  coordination among teams.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Secretary - RIGHT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/vinaya.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Secretary"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  Secretary
+                </p>
+                <p class="text-lg sm:text-xl">Vinaya. V</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Manages official records and communications of the club,
+                  coordinates meetings and activities, and is authorized to take
+                  decisions.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: right aligned -->
+            <div class="hidden lg:flex items-center justify-end gap-4">
+              <div class="text-right max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">Secretary</p>
+                <p class="text-lg">Vinaya. V</p>
+                <p class="text-sm text-gray-400">
+                  Manages official records and communications of the club,
+                  coordinates meetings and activities, and is authorized to take
+                  decisions.
+                </p>
+              </div>
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/vinaya.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Secretary"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Finance & Technical -->
+      <section id="slide3" class="bg-ink py-10 sm:py-12 lg:py-16">
+        <div
+          class="max-w-content mx-auto w-full px-4 sm:px-6 lg:px-10 flex flex-col justify-center gap-10 lg:gap-14"
+        >
+          <h2 class="text-3xl font-bold text-center mb-4 text-tealink">
+            Finance & Technical
+          </h2>
+
+          <!-- Head of Finance & Technical - LEFT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink"
+              >
+                <img
+                  src="contents/images/deepak.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Head of Finance & Technical"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  Head of Finance & Technical
+                </p>
+                <p class="text-lg sm:text-xl">Deepak. B. T</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Directs the club's financial and technical operations,
+                  manages budgeting and expenses, and handles digital platforms
+                  and resources.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: left aligned -->
+            <div class="hidden lg:flex items-center justify-start gap-4">
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/deepak.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Head of Finance & Technical"
+                />
+              </div>
+              <div class="text-left max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">
+                  Head of Finance & Technical
+                </p>
+                <p class="text-lg">Deepak. B. T</p>
+                <p class="text-sm text-gray-400">
+                  Directs the club's financial and technical operations, manages budgeting and expenses, and handles digital platforms
+                  and resources.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Joint Head of Finance - RIGHT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink"
+              >
+                <img
+                  src="contents/images/paramesh.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Joint Head of Finance"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  Joint Head of Finance
+                </p>
+                <p class="text-lg sm:text-xl">Paramesh. B. R</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Assists in managing financial planning and budgeting, monitors
+                  expenses, maintains financial records, and coordinates with
+                  the finance team.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: right aligned -->
+            <div class="hidden lg:flex items-center justify-end gap-4">
+              <div class="text-right max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">
+                  Joint Head of Finance
+                </p>
+                <p class="text-lg">Paramesh. B. R</p>
+                <p class="text-sm text-gray-400">
+                  Assists in managing financial planning and budgeting, monitors
+                  expenses, maintains financial records, and coordinates with
+                  the finance team.
+                </p>
+              </div>
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/paramesh.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Joint Head of Finance"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Joint Head of Technical - LEFT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink"
+              >
+                <img
+                  src="contents/images/avantika.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Joint Head of Technical"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  Joint Head of Technical
+                </p>
+                <p class="text-lg sm:text-xl">Avantika. B</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Manages the club's technical operations and digital platforms,
+                  ensuring smooth execution of events through effective handling
+                  of resources.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: left aligned -->
+            <div class="hidden lg:flex items-center justify-start gap-4">
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/avantika.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Joint Head of Technical"
+                />
+              </div>
+              <div class="text-left max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">
+                  Joint Head of Technical
+                </p>
+                <p class="text-lg">Avantika. B</p>
+                <p class="text-sm text-gray-400">
+                  Manages the club's technical operations and digital platforms,
+                  ensuring smooth execution of events through effective handling
+                  of resources.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Logistics -->
+      <section class="bg-black py-10 sm:py-12 lg:py-16">
+        <div
+          class="max-w-content mx-auto w-full px-4 sm:px-6 lg:px-10 flex flex-col justify-center gap-12 lg:gap-16"
+        >
+          <h2 class="text-3xl font-bold text-center mb-4 text-tealink">
+            Logistics
+          </h2>
+
+          <!-- Head - RIGHT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink"
+              >
+                <img
+                  src="contents/images/praveen.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Logistics Head"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  Head
+                </p>
+                <p class="text-lg sm:text-xl">Praveen. K</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Plans and manages logistics for club activities, coordinating
+                  resources, venues, and materials for events.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: right aligned -->
+            <div class="hidden lg:flex items-center justify-end gap-4">
+              <div class="text-right max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">Head</p>
+                <p class="text-lg">Praveen. K</p>
+                <p class="text-sm text-gray-400">
+                  Plans and manages logistics for club activities, coordinating
+                  resources, venues, and materials for events.
+                </p>
+              </div>
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/praveen.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Logistics Head"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Joint Head - LEFT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink"
+              >
+                <img
+                  src="contents/images/r.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Logistics Joint Head"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  Joint Head
+                </p>
+                <p class="text-lg sm:text-xl">Deepak. R</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Assists in planning and managing logistical arrangements,
+                  coordinates resources and event requirements, and supports
+                  smooth and timely execution of activities.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: left aligned -->
+            <div class="hidden lg:flex items-center justify-start gap-4">
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/r.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Logistics Joint Head"
+                />
+              </div>
+              <div class="text-left max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">Joint Head</p>
+                <p class="text-lg">Deepak. R</p>
+                <p class="text-sm text-gray-400">
+                  Assists in planning and managing logistical arrangements,
+                  coordinates resources and event requirements, and supports
+                  smooth and timely execution of activities.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Content -->
+      <section class="bg-ink py-10 sm:py-12 lg:py-16">
+        <div
+          class="max-w-content mx-auto w-full px-4 sm:px-6 lg:px-10 flex flex-col justify-center gap-12 lg:gap-16"
+        >
+          <h2 class="text-3xl font-bold text-center mb-4 text-tealink">
+            Content
+          </h2>
+
+          <!-- Head - RIGHT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink"
+              >
+                <img
+                  src="contents/images/hemaa.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Content Head"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  Head
+                </p>
+                <p class="text-lg sm:text-xl">Hemaa Shree. A</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Plans and directss creation of content for the club, manages
+                  writing, editing, and creative direction, and ensures
+                  consistent communication across platforms.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: right aligned -->
+            <div class="hidden lg:flex items-center justify-end gap-4">
+              <div class="text-right max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">Head</p>
+                <p class="text-lg">Hemaa Shree. A</p>
+                <p class="text-sm text-gray-400">
+                  Plans and directs creation of content for the club, manages
+                  writing, editing, and creative direction, and ensures
+                  consistent communication across platforms.
+                </p>
+              </div>
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/hemaa.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Content Head"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Joint Head - LEFT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink"
+              >
+                <img
+                  src="contents/images/vipanchika.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Content Joint Head"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  Joint Head
+                </p>
+                <p class="text-lg sm:text-xl">Vipanchika. A</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Assists in planning and creating content for the club,
+                  supporting writing, editing, and creative tasks.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: left aligned -->
+            <div class="hidden lg:flex items-center justify-start gap-4">
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/vipanchika.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Content Joint Head"
+                />
+              </div>
+              <div class="text-left max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">Joint Head</p>
+                <p class="text-lg">Vipanchika. A</p>
+                <p class="text-sm text-gray-400">
+                  Assists in planning and creating content for the club,
+                  supporting writing, editing, and creative tasks.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PR -->
+      <section class="bg-black py-10 sm:py-12 lg:py-16">
+        <div
+          class="max-w-content mx-auto w-full px-4 sm:px-6 lg:px-10 flex flex-col justify-center gap-12 lg:gap-16"
+        >
+          <h2 class="text-3xl font-bold text-center mb-4 text-tealink">PR</h2>
+
+          <!-- Head - RIGHT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink"
+              >
+                <img
+                  src="contents/images/swathi.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="PR Head"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  Head
+                </p>
+                <p class="text-lg sm:text-xl">Swathi. P</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Manages the club's public relations and online presence,
+                  planning and releasing engaging content that reflects a
+                  consistent and positive image.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: right aligned -->
+            <div class="hidden lg:flex items-center justify-end gap-4">
+              <div class="text-right max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">Head</p>
+                <p class="text-lg">Swathi. P</p>
+                <p class="text-sm text-gray-400">
+                  Manages the club's public relations and online presence,
+                  planning and releasing engaging content that reflects a
+                  consistent and positive image.
+                </p>
+              </div>
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/swathi.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="PR Head"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Joint Head - LEFT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink"
+              >
+                <img
+                  src="contents/images/reema.jpg.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="PR Joint Head"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  Joint Head
+                </p>
+                <p class="text-lg sm:text-xl">Reema Sanjana. R</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Assists in managing public relations and online communication,
+                  focusing on planning and sharing engaging content while
+                  ensuring consistency.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: left aligned -->
+            <div class="hidden lg:flex items-center justify-start gap-4">
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/reema.jpg.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="PR Joint Head"
+                />
+              </div>
+              <div class="text-left max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">Joint Head</p>
+                <p class="text-lg">Reema Sanjana. R</p>
+                <p class="text-sm text-gray-400">
+                  Assists in managing public relations and online communication,
+                  focusing on planning and sharing engaging content while
+                  ensuring consistency.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Design -->
+      <section class="bg-ink py-10 sm:py-12 lg:py-16">
+        <div
+          class="max-w-content mx-auto w-full px-4 sm:px-6 lg:px-10 flex flex-col justify-center gap-12 lg:gap-16"
+        >
+          <h2 class="text-3xl font-bold text-center mb-4 text-tealink">
+            Design
+          </h2>
+
+          <!-- Head - RIGHT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink"
+              >
+                <img
+                  src="contents/images/akriti.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Design Head"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  Head
+                </p>
+                <p class="text-lg sm:text-xl">Akrithi. R. J</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Leads the creation of visual content for the club, ensuring
+                  all designs are consistent, visually appealing, and aligned
+                  with the club's brand identity.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: right aligned -->
+            <div class="hidden lg:flex items-center justify-end gap-4">
+              <div class="text-right max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">Head</p>
+                <p class="text-lg">Akrithi. R. J</p>
+                <p class="text-sm text-gray-400">
+                  Leads the creation of visual content for the club, ensuring
+                  all designs are consistent, visually appealing, and aligned
+                  with the club's brand identity.
+                </p>
+              </div>
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/akriti.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Design Head"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Joint Head - LEFT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink"
+              >
+                <img
+                  src="contents/images/merlin.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Design Joint Head"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  Joint Head
+                </p>
+                <p class="text-lg sm:text-xl">Merlin Risha. M</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Assists in creating and managing the club's visual content,
+                  supporting graphic design and creative planning.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: left aligned -->
+            <div class="hidden lg:flex items-center justify-start gap-4">
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/merlin.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Design Joint Head"
+                />
+              </div>
+              <div class="text-left max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">Joint Head</p>
+                <p class="text-lg">Merlin Risha. M</p>
+                <p class="text-sm text-gray-400">
+                  Assists in creating and managing the club's visual content,
+                  supporting graphic design and creative planning.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Social Media -->
+      <section class="bg-black py-10 sm:py-12 lg:py-16">
+        <div
+          class="max-w-content mx-auto w-full px-4 sm:px-6 lg:px-10 flex flex-col justify-center gap-12 lg:gap-16"
+        >
+          <h2 class="text-3xl font-bold text-center mb-4 text-tealink">
+            Social Media
+          </h2>
+
+          <!-- Head - RIGHT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink"
+              >
+                <img
+                  src="contents/images/g deepak.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Social Media Head"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  Head
+                </p>
+                <p class="text-lg sm:text-xl">Deepak. G</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Manages the club's social media platforms and online presence,
+                  planning and posting content to engage the audience.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: right aligned -->
+            <div class="hidden lg:flex items-center justify-end gap-4">
+              <div class="text-right max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">Head</p>
+                <p class="text-lg">Deepak. G</p>
+                <p class="text-sm text-gray-400">
+                  Manages the club's social media platforms and online presence,
+                  planning and posting content to engage the audience.
+                </p>
+              </div>
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/g deepak.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Social Media Head"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Joint Head - LEFT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink"
+              >
+                <img
+                  src="contents/images/aishwarya .jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Social Media Joint Head"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  Joint Head
+                </p>
+                <p class="text-lg sm:text-xl">Aishwarya. R. V</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Assists in managing the club's social media platforms and
+                  online presence, supporting content planning and posting.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: left aligned -->
+            <div class="hidden lg:flex items-center justify-start gap-4">
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/aishwarya .jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Social Media Joint Head"
+                />
+              </div>
+              <div class="text-left max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">Joint Head</p>
+                <p class="text-lg">Aishwarya. R. V</p>
+                <p class="text-sm text-gray-400">
+                  Assists in managing the club's social media platforms and
+                  online presence, supporting content planning and posting.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Visual Media -->
+      <section class="bg-ink py-10 sm:py-12 lg:py-16">
+        <div
+          class="max-w-content mx-auto w-full px-4 sm:px-6 lg:px-10 flex flex-col justify-center gap-12 lg:gap-16"
+        >
+          <h2 class="text-3xl font-bold text-center mb-4 text-tealink">
+            Visual Media
+          </h2>
+
+          <!-- Head - RIGHT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink"
+              >
+                <img
+                  src="contents/images/varun.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Visual Media Head"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  Head
+                </p>
+                <p class="text-lg sm:text-xl">Varun. V. V</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Manages the creation and management of the club's visual
+                  content, including photos and videos, ensuring all media is
+                  engaging and high-quality.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: right aligned -->
+            <div class="hidden lg:flex items-center justify-end gap-4">
+              <div class="text-right max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">Head</p>
+                <p class="text-lg">Varun. V. V</p>
+                <p class="text-sm text-gray-400">
+                  Manages the creation and management of the club's visual
+                  content, including photos and videos, ensuring all media is
+                  engaging and high-quality.
+                </p>
+              </div>
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/varun.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Visual Media Head"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Joint Head - LEFT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink"
+              >
+                <img
+                  src="contents/images/ashmitha.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Visual Media Joint Head"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  Joint Head
+                </p>
+                <p class="text-lg sm:text-xl">Asmitha Raj. J. V</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Assists in creating and managing the club's visual content,
+                  helping ensure all visual media is aligned with the club's
+                  brand identity.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: left aligned -->
+            <div class="hidden lg:flex items-center justify-start gap-4">
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/ashmitha.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Visual Media Joint Head"
+                />
+              </div>
+              <div class="text-left max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">Joint Head</p>
+                <p class="text-lg">Asmitha Raj. J. V</p>
+                <p class="text-sm text-gray-400">
+                  Assists in creating and managing the club's visual content,
+                  helping ensure all visual media is aligned with the club's
+                  brand identity.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Working Committee -->
+      <section class="bg-black py-10 sm:py-12 lg:py-16">
+        <div
+          class="max-w-content mx-auto w-full px-4 sm:px-6 lg:px-10 flex flex-col justify-center gap-12 lg:gap-16"
+        >
+          <h2 class="text-3xl font-bold text-center mb-4 text-tealink">
+            Working Committee
+          </h2>
+
+          <!-- Head - RIGHT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink"
+              >
+                <img
+                  src="contents/images/thanish.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Working Committee Head"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  Head of Working Committee
+                </p>
+                <p class="text-lg sm:text-xl">Thanish. L. S</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Leads and coordinates committee members in planning and
+                  executing the club's activities, ensuring smooth operations
+                  and effective teamwork.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: right aligned -->
+            <div class="hidden lg:flex items-center justify-end gap-4">
+              <div class="text-right max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">
+                  Head of Working Committee
+                </p>
+                <p class="text-lg">Thanish. L. S</p>
+                <p class="text-sm text-gray-400">
+                  Leads and coordinates committee members in planning and
+                  executing the club's activities, ensuring smooth operations
+                  and effective teamwork.
+                </p>
+              </div>
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/thanish.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Working Committee Head"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Joint Head - LEFT SIDE on desktop -->
+          <div class="w-full">
+            <!-- Mobile: centered -->
+            <div class="flex flex-col items-center gap-3 lg:hidden">
+              <div
+                class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-tealink"
+              >
+                <img
+                  src="contents/images/dhakshitha.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Working Committee Joint Head"
+                />
+              </div>
+              <div class="text-center max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm sm:text-base">
+                  Joint Head of Working Committee
+                </p>
+                <p class="text-lg sm:text-xl">Dhakshitha. S</p>
+                <p class="text-sm sm:text-base text-gray-400">
+                  Supports the Head in coordinating committee members and
+                  managing the execution of club activities.
+                </p>
+              </div>
+            </div>
+
+            <!-- Desktop: left aligned -->
+            <div class="hidden lg:flex items-center justify-start gap-4">
+              <div
+                class="w-24 h-24 xl:w-28 xl:h-28 rounded-full overflow-hidden border border-tealink flex-shrink-0"
+              >
+                <img
+                  src="contents/images/dhakshitha.jpeg"
+                  class="w-full h-full object-cover"
+                  alt="Working Committee Joint Head"
+                />
+              </div>
+              <div class="text-left max-w-md space-y-1">
+                <p class="font-semibold text-tealink text-sm">
+                  Joint Head of Working Committee
+                </p>
+                <p class="text-lg">Dhakshitha. S</p>
+                <p class="text-sm text-gray-400">
+                  Supports the Head in coordinating committee members and
+                  managing the execution of club activities.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="bg-ink py-10 sm:py-12 lg:py-16 px-4 sm:px-6">
+        <div
+          class="bg-inkcard p-6 sm:p-8 md:p-10 rounded-xl border border-tealink shadow-xl w-full max-w-md mx-auto"
+        >
+          <h2 class="text-2xl font-bold mb-6 text-tealink">Contact Us</h2>
+          <form class="space-y-4">
+            <input
+              placeholder="Name"
+              class="w-full bg-black border border-tealink/30 p-2.5 rounded text-white text-sm sm:text-base focus:outline-none focus:border-tealink"
+            />
+            <input
+              placeholder="Email"
+              type="email"
+              class="w-full bg-black border border-tealink/30 p-2.5 rounded text-white text-sm sm:text-base focus:outline-none focus:border-tealink"
+            />
+            <textarea
+              placeholder="Message"
+              rows="4"
+              class="w-full bg-black border border-tealink/30 p-2.5 rounded text-white text-sm sm:text-base resize-none focus:outline-none focus:border-tealink"
+            ></textarea>
+            <button
+              type="button"
+              class="w-full bg-tealink text-black px-4 py-2.5 rounded font-semibold text-sm sm:text-base hover:bg-tealink/90 transition"
+            >
+              Send
+            </button>
+          </form>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================= JS ================= -->
+    <script>
+      // Mobile Menu
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener("click", () =>
+          mobileMenu.classList.toggle("hidden"),
+        );
+      }
+
+      // Mobile/Tablet Carousel
+      const carouselContainer = document.getElementById("carouselContainer");
+      const slideAnchors = carouselContainer
+        ? [...carouselContainer.querySelectorAll("a")]
+        : [];
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const dotsWrap = document.getElementById("dots");
+
+      let carouselIndex = 0;
+      const totalSlides = slideAnchors.length;
+
+      function updateCarousel() {
+        if (!carouselContainer) return;
+        carouselContainer.style.transform = `translateX(${
+          -carouselIndex * 100
+        }%)`;
+        updateDots();
+      }
+
+      function goToSlide(index) {
+        if (!totalSlides) return;
+        carouselIndex = (index + totalSlides) % totalSlides;
+        updateCarousel();
+      }
+
+      function nextSlide() {
+        goToSlide(carouselIndex + 1);
+      }
+      function prevSlide() {
+        goToSlide(carouselIndex - 1);
+      }
+
+      // Dots
+      const dots = [];
+      if (dotsWrap) {
+        slideAnchors.forEach((_, idx) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className =
+            "w-2.5 h-2.5 rounded-full bg-black/30 hover:bg-black/60 transition";
+          b.addEventListener("click", (e) => {
+            e.stopPropagation();
+            goToSlide(idx);
+          });
+          dotsWrap.appendChild(b);
+          dots.push(b);
+        });
+      }
+
+      function updateDots() {
+        dots.forEach((d, idx) => {
+          d.className =
+            idx === carouselIndex
+              ? "w-2.5 h-2.5 rounded-full bg-black/80 transition"
+              : "w-2.5 h-2.5 rounded-full bg-black/30 hover:bg-black/60 transition";
+        });
+      }
+      updateDots();
+
+      // Arrows
+      if (nextBtn) {
+        nextBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          nextSlide();
+        });
+      }
+      if (prevBtn) {
+        prevBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          prevSlide();
+        });
+      }
+
+      // Auto rotate
+      if (totalSlides > 1) {
+        setInterval(nextSlide, 4000);
+      }
+
+      // Desktop Carousel
+      const carouselContainerDesktop = document.getElementById(
+        "carouselContainerDesktop",
+      );
+      const slideAnchorsDesktop = carouselContainerDesktop
+        ? [...carouselContainerDesktop.querySelectorAll("a")]
+        : [];
+      const prevBtnDesktop = document.getElementById("prevBtnDesktop");
+      const nextBtnDesktop = document.getElementById("nextBtnDesktop");
+      const dotsWrapDesktop = document.getElementById("dotsDesktop");
+
+      let carouselIndexDesktop = 0;
+      const totalSlidesDesktop = slideAnchorsDesktop.length;
+
+      function updateCarouselDesktop() {
+        if (!carouselContainerDesktop) return;
+        carouselContainerDesktop.style.transform = `translateX(${
+          -carouselIndexDesktop * 100
+        }%)`;
+        updateDotsDesktop();
+      }
+
+      function goToSlideDesktop(index) {
+        if (!totalSlidesDesktop) return;
+        carouselIndexDesktop =
+          (index + totalSlidesDesktop) % totalSlidesDesktop;
+        updateCarouselDesktop();
+      }
+
+      function nextSlideDesktop() {
+        goToSlideDesktop(carouselIndexDesktop + 1);
+      }
+      function prevSlideDesktop() {
+        goToSlideDesktop(carouselIndexDesktop - 1);
+      }
+
+      // Dots Desktop
+      const dotsDesktop = [];
+      if (dotsWrapDesktop) {
+        slideAnchorsDesktop.forEach((_, idx) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className =
+            "w-2.5 h-2.5 rounded-full bg-black/30 hover:bg-black/60 transition";
+          b.addEventListener("click", (e) => {
+            e.stopPropagation();
+            goToSlideDesktop(idx);
+          });
+          dotsWrapDesktop.appendChild(b);
+          dotsDesktop.push(b);
+        });
+      }
+
+      function updateDotsDesktop() {
+        dotsDesktop.forEach((d, idx) => {
+          d.className =
+            idx === carouselIndexDesktop
+              ? "w-2.5 h-2.5 rounded-full bg-black/80 transition"
+              : "w-2.5 h-2.5 rounded-full bg-black/30 hover:bg-black/60 transition";
+        });
+      }
+      updateDotsDesktop();
+
+      // Arrows Desktop
+      if (nextBtnDesktop) {
+        nextBtnDesktop.addEventListener("click", (e) => {
+          e.stopPropagation();
+          nextSlideDesktop();
+        });
+      }
+      if (prevBtnDesktop) {
+        prevBtnDesktop.addEventListener("click", (e) => {
+          e.stopPropagation();
+          prevSlideDesktop();
+        });
+      }
+
+      // Auto rotate Desktop
+      if (totalSlidesDesktop > 1) {
+        setInterval(nextSlideDesktop, 4000);
+      }
+    </script>
+  </body>
+</html>

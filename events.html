@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>INKVERSE | Upcoming Events</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: "#0B0F10",
+              tealink: "#008C99",
+              inkcard: "#0F1416",
+            },
+            maxWidth: {
+              content: "1120px",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      :root {
+        --nav-h: 72px;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        background-color: #0B0F10;
+      }
+      #scroller {
+        min-height: calc(100vh - var(--nav-h));
+        overflow-y: auto;
+        scroll-behavior: smooth;
+        padding-top: var(--nav-h);
+      }
+      @media (min-width: 1536px) {
+        :root {
+          --nav-h: 80px;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-ink text-white">
+    <!-- NAVBAR -->
+    <nav
+      class="fixed top-0 left-0 w-full bg-black/80 backdrop-blur border-b border-tealink z-50"
+      style="height: var(--nav-h)"
+    >
+      <div
+        class="max-w-content mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-3">
+          <button
+            id="menuBtn"
+            class="md:hidden text-2xl text-tealink focus:outline-none"
+            aria-label="Toggle navigation"
+          >
+            ☰
+          </button>
+          <a href="./index.html">
+            <h1 class="text-xl sm:text-2xl font-bold tracking-wide text-tealink">
+              INKVERSE
+            </h1>
+          </a>
+        </div>
+
+        <div
+          class="hidden md:flex items-center gap-6 font-semibold text-sm lg:text-base"
+        >
+          <a href="./index.html#hero" class="hover:text-tealink transition-colors">
+            Home
+          </a>
+          <a href="./events.html" class="text-tealink transition-colors">
+            Register Events
+          </a>
+          <a href="./blog.html" class="hover:text-tealink transition-colors">
+            Blogs
+          </a>
+          <a href="./index.html#contact" class="hover:text-tealink transition-colors">
+            Contact
+          </a>
+        </div>
+      </div>
+
+      <!-- Mobile dropdown -->
+      <div
+        id="mobileMenu"
+        class="hidden md:hidden bg-black border-t border-tealink"
+      >
+        <a
+          href="./index.html#hero"
+          class="block px-4 py-3 border-b border-tealink/30 hover:bg-ink/70"
+        >
+          Home
+        </a>
+        <a
+          href="./events.html"
+          class="block px-4 py-3 border-b border-tealink/30 hover:bg-ink/70"
+        >
+          Register Events
+        </a>
+        <a
+          href="./blog.html"
+          class="block px-4 py-3 border-b border-tealink/30 hover:bg-ink/70"
+        >
+          Blogs
+        </a>
+        <a
+          href="./index.html#contact"
+          class="block px-4 py-3 hover:bg-ink/70"
+        >
+          Contact
+        </a>
+      </div>
+    </nav>
+
+    <div id="scroller">
+      <section class="bg-ink py-10 sm:py-12 lg:py-16">
+        <div class="max-w-content mx-auto w-full px-4 sm:px-6 lg:px-10">
+          <header class="mb-8">
+            <p class="text-xs sm:text-sm uppercase tracking-[0.2em] text-tealink mb-2">
+              Inkverse Club
+            </p>
+            <h1 class="text-3xl sm:text-4xl font-bold text-white mb-2">
+              Upcoming Events
+            </h1>
+            <p class="text-gray-400 text-sm sm:text-base max-w-2xl">
+              Find all INKVERSE events with the same details as the home page
+              carousel. Click any card to go straight to the registration form.
+            </p>
+          </header>
+
+          <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            <!-- FIFA 24 Esports -->
+            <a
+              href="https://forms.gle/vYK6dDXchjJpMrkSA"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-inkcard border border-tealink/40 rounded-xl overflow-hidden hover:border-tealink hover:-translate-y-1 transition transform block"
+            >
+              <div class="h-48 bg-black flex items-center justify-center">
+                <img
+                  src="./contents/posters/fifa.png"
+                  alt="FIFA 24 Esports Poster"
+                  class="h-full w-full object-contain"
+                />
+              </div>
+              <div class="p-4 space-y-1">
+                <h2 class="text-lg font-semibold text-white">
+                  FIFA 24 Esports
+                </h2>
+                <p class="text-xs text-tealink font-medium uppercase tracking-wide">
+                  Upcoming Event
+                </p>
+                <p class="text-sm text-gray-300">
+                  13 Feb 2026 • 11:00 AM • C-Block
+                </p>
+                <p class="text-xs text-gray-400 mt-1">
+                  2‑member teams, knockout format, with a golden rule of 5 goals
+                  per match.
+                </p>
+                <p class="text-xs text-tealink mt-2 font-semibold">
+                  Register on Google Forms →
+                </p>
+              </div>
+            </a>
+
+            <!-- Mirror Spell -->
+            <a
+              href="https://forms.gle/8Tw3gvkYXxjhwhsa8"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-inkcard border border-tealink/40 rounded-xl overflow-hidden hover:border-tealink hover:-translate-y-1 transition transform block"
+            >
+              <div class="h-48 bg-black flex items-center justify-center">
+                <img
+                  src="./contents/posters/mirrorspell.png"
+                  alt="Mirror Spell Poster"
+                  class="h-full w-full object-contain"
+                />
+              </div>
+              <div class="p-4 space-y-1">
+                <h2 class="text-lg font-semibold text-white">
+                  Mirror Spell
+                </h2>
+                <p class="text-xs text-tealink font-medium uppercase tracking-wide">
+                  Upcoming Event
+                </p>
+                <p class="text-sm text-gray-300">
+                  13 Feb 2026 • 11:00 AM • C-Block
+                </p>
+                <p class="text-xs text-gray-400 mt-1">
+                  Fun word‑game based event with solo and duo participation
+                  options.
+                </p>
+                <p class="text-xs text-tealink mt-2 font-semibold">
+                  Register on Google Forms →
+                </p>
+              </div>
+            </a>
+
+            <!-- WitWarZ Debate Battle -->
+            <a
+              href="https://forms.gle/uGsCdVJTMg3Edcms8"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-inkcard border border-tealink/40 rounded-xl overflow-hidden hover:border-tealink hover:-translate-y-1 transition transform block"
+            >
+              <div class="h-48 bg-black flex items-center justify-center">
+                <img
+                  src="./contents/posters/witwars.png"
+                  alt="WitWarZ Debate Battle Poster"
+                  class="h-full w-full object-contain"
+                />
+              </div>
+              <div class="p-4 space-y-1">
+                <h2 class="text-lg font-semibold text-white">
+                  WitWarZ Debate Battle
+                </h2>
+                <p class="text-xs text-tealink font-medium uppercase tracking-wide">
+                  Upcoming Event
+                </p>
+                <p class="text-sm text-gray-300">
+                  13 Feb 2026 • 11:00 AM • C-Block, Auditorium
+                </p>
+                <p class="text-xs text-gray-400 mt-1">
+                  2‑member debate teams, on‑spot topics, judged on logic,
+                  clarity, and spontaneity.
+                </p>
+                <p class="text-xs text-tealink mt-2 font-semibold">
+                  Register on Google Forms →
+                </p>
+              </div>
+            </a>
+
+            <!-- Free Fire Squad Battle -->
+            <a
+              href="https://forms.gle/7cK4qBFYFFoRVcFYA"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-inkcard border border-tealink/40 rounded-xl overflow-hidden hover:border-tealink hover:-translate-y-1 transition transform block"
+            >
+              <div class="h-48 bg-black flex items-center justify-center">
+                <img
+                  src="./contents/posters/free fire.png"
+                  alt="Free Fire Squad Battle Poster"
+                  class="h-full w-full object-contain"
+                />
+              </div>
+              <div class="p-4 space-y-1">
+                <h2 class="text-lg font-semibold text-white">
+                  Free Fire Squad Battle
+                </h2>
+                <p class="text-xs text-tealink font-medium uppercase tracking-wide">
+                  Upcoming Event
+                </p>
+                <p class="text-sm text-gray-300">
+                  13 Feb 2026 • 11:00 AM • C-Block
+                </p>
+                <p class="text-xs text-gray-400 mt-1">
+                  4‑member squads, custom rooms with both Battle Royale and Clash
+                  Squad modes.
+                </p>
+                <p class="text-xs text-tealink mt-2 font-semibold">
+                  Register on Google Forms →
+                </p>
+              </div>
+            </a>
+
+            <!-- Murder Mystery -->
+            <a
+              href="https://forms.gle/DDZK6JXNhoYMkNcw6"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-inkcard border border-tealink/40 rounded-xl overflow-hidden hover:border-tealink hover:-translate-y-1 transition transform block"
+            >
+              <div class="h-48 bg-black flex items-center justify-center">
+                <img
+                  src="./contents/posters/murder mystery.png"
+                  alt="Murder Mystery Poster"
+                  class="h-full w-full object-contain"
+                />
+              </div>
+              <div class="p-4 space-y-1">
+                <h2 class="text-lg font-semibold text-white">
+                  Murder Mystery
+                </h2>
+                <p class="text-xs text-tealink font-medium uppercase tracking-wide">
+                  Upcoming Event
+                </p>
+                <p class="text-sm text-gray-300">
+                  13 Feb 2026 • 11:00 AM • C-Block
+                </p>
+                <p class="text-xs text-gray-400 mt-1">
+                  Team‑based investigation game with clues and a narrative‑driven
+                  mystery to solve.
+                </p>
+                <p class="text-xs text-tealink mt-2 font-semibold">
+                  Register on Google Forms →
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+      }
+    </script>
+  </body>
+</html>
